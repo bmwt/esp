@@ -6,14 +6,17 @@
 --# Settings #
 --############
 
---- Thingspeak ---
-thingspeak_channel_api_write_key = "LU1TXYV15GBVTDHU"
+-- set global variables, re-set them in secrets.lua
+wifi_SSID = "blah"
+wifi_password = "blah"
+thingspeak_channel_api_write_key = "blah"
+require "secrets"
+
+-- Thingspeak ---
 thingspeak_temperature_field_name = "field1"
 thingspeak_humidity_field_name = "field2"
 
 --- WIFI ---
-wifi_SSID = "peace"
-wifi_password = "hailbrak"
 -- wifi.PHYMODE_B 802.11b, More range, Low Transfer rate, More current draw
 -- wifi.PHYMODE_G 802.11g, Medium range, Medium transfer rate, Medium current draw
 -- wifi.PHYMODE_N 802.11n, Least range, Fast transfer rate, Least current draw 
