@@ -1,5 +1,5 @@
 -- Thingspeak connect script with deep sleep
--- Remember to connect GPIO16 and RST to enable deep sleep
+-- Remember to connect GPIO16 (D0) and RST to enable deep sleep
 -- TODO: Log error codes to server
 
 --############
@@ -14,7 +14,6 @@ require "secrets"
 
 --- Thingspeak ---
 thingspeak_temperature_field_name = "field1"
-thingspeak_humidity_field_name = "field2"
 
 --- WIFI ---
 -- wifi.PHYMODE_B 802.11b, More range, Low Transfer rate, More current draw
@@ -33,7 +32,7 @@ client_gateway=""
 --- INTERVAL ---
 -- In milliseconds. Remember that the sensor reading, 
 -- reboot and wifi reconnect takes a few seconds
-time_between_sensor_readings = 60000
+time_between_sensor_readings = 120000
 
 --################
 --# END settings #
@@ -41,12 +40,10 @@ time_between_sensor_readings = 60000
 
 -- init sensor
 temperature = 0
--- GPIO0
 pin = 3
 ow.setup(pin)
 counter=0
 lasttemp=-999
-print("wifissid " .. wifi_SSID )
 -- Connect to the wifi network
 wifi.setmode(wifi.STATION) 
 wifi.setphymode(wifi_signal_mode)
@@ -139,7 +136,6 @@ function loop()
         con:send(
             "POST /update?api_key=" .. thingspeak_channel_api_write_key .. 
             "&field1=" .. t1 .. 
---            "&field2=" .. humidity .. 
             " HTTP/1.1\r\n" .. 
             "Host: api.thingspeak.com\r\n" .. 
             "Connection: close\r\n" .. 
