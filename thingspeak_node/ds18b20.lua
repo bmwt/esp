@@ -6,14 +6,17 @@
 --# Settings #
 --############
 
+-- set global variables, re-set them in secrets.lua
+wifi_SSID = "blah"
+wifi_password = "blah"
+thingspeak_channel_api_write_key = "blah"
+require "secrets"
+
 --- Thingspeak ---
-thingspeak_channel_api_write_key = ""
 thingspeak_temperature_field_name = "field1"
 thingspeak_humidity_field_name = "field2"
 
 --- WIFI ---
-wifi_SSID = ""
-wifi_password = ""
 -- wifi.PHYMODE_B 802.11b, More range, Low Transfer rate, More current draw
 -- wifi.PHYMODE_G 802.11g, Medium range, Medium transfer rate, Medium current draw
 -- wifi.PHYMODE_N 802.11n, Least range, Fast transfer rate, Least current draw 
@@ -43,7 +46,7 @@ pin = 3
 ow.setup(pin)
 counter=0
 lasttemp=-999
-
+print("wifissid " .. wifi_SSID )
 -- Connect to the wifi network
 wifi.setmode(wifi.STATION) 
 wifi.setphymode(wifi_signal_mode)
