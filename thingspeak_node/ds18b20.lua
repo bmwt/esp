@@ -7,7 +7,7 @@
 --############
 
 --- Thingspeak ---
-thingspeak_channel_api_write_key = "BVMQI6WLOQWEL7XT"
+thingspeak_channel_api_write_key = ""
 thingspeak_temperature_field_name = "field1"
 thingspeak_humidity_field_name = "field2"
 
