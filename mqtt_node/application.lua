@@ -1,6 +1,6 @@
 -- code blatantly cribbed from other folks work.  i just connect em up
--- Remember to connect GPIO16 (D0) and RST to enable deep sleep
--- onewire (sensor) on (D3)
+-- Remember to connect (D0) and (RST) to enable reset after deep sleep
+-- onewire on (D3)
 
 --############
 --# Settings #
