@@ -1,6 +1,4 @@
--- Thingspeak connect script with deep sleep
--- Remember to connect GPIO16 (D0) and RST to enable deep sleep
--- TODO: Log error codes to server
+-- code blatantly cribbed from other folks work.  i just connect em up
 
 --############
 --# Settings #
@@ -58,13 +56,13 @@ if client_ip ~= "" then
     wifi.sta.setip({ip=client_ip,netmask=client_netmask,gateway=client_gateway})
 end
 
--- init sensor
+-- init DS18B20 (onewire) sensor
 pin = 3
 ow.setup(pin)
 counter=0
 lasttemp=-999
 
--- support function
+-- function to decode negative temps on DS18B20 
 
 function bxor(a,b)
    local r = 0
@@ -145,7 +143,4 @@ function loop()
         print("Connecting...")
     end
 end
-            
-
-        
 tmr.alarm(0, 100, 1, function() loop() end)
