@@ -1,3 +1,2 @@
-This is my esp repo.
+LUA code for various IOT projects on the esp microcontrollers
 
-So there
