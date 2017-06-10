@@ -16,9 +16,9 @@ def initalize_pins():
 
 def color_set(color):
     if color == "white":
-        red = machine.PWM(machine.Pin(13), duty=100)
-        green = machine.PWM(machine.Pin(14), duty=100)
-        blue = machine.PWM(machine.Pin(12), duty=100)
+        red = machine.PWM(machine.Pin(13), duty=1000)
+        green = machine.PWM(machine.Pin(14), duty=1000)
+        blue = machine.PWM(machine.Pin(12), duty=1000)
 
     if color == "red":
         red = machine.PWM(machine.Pin(13), freq=300, duty=100)
@@ -38,6 +38,12 @@ def color_set(color):
         red = machine.PWM(machine.Pin(13), freq=300, duty=100)
         green = machine.PWM(machine.Pin(14), freq=300, duty=0)
         blue = machine.PWM(machine.Pin(12), freq=300, duty=100)
+
+    if color == "yellow":
+        red = machine.PWM(machine.Pin(13), freq=300, duty=900)
+        green = machine.PWM(machine.Pin(14), freq=300, duty=300)
+        blue = machine.PWM(machine.Pin(12), freq=300, duty=0)
+
                             
 def color_pulse(speed, step):
         for dutyCycle in range(1, 101, step):
@@ -58,9 +64,9 @@ def color_pulse(speed, step):
             time.sleep(speed)
 
 initalize_pins()
-color_set("purple")
-while True:
-    color_pulse(0.02, 5)
+color_set("white")
+#while True:
+#    color_pulse(0.02, 5)
 
 #while True:
 #    color_pulse("purple", 300, 0.02, 5) 
