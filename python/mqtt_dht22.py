@@ -7,7 +7,7 @@ from umqtt.simple import MQTTClient
 
 #MQTT variables
 server = "10.1.0.42"
-topic = "home"
+topic = "home/test/temperature"
 client = "test"
 
 def get_temp():
@@ -30,8 +30,9 @@ def pub_temp(temp):
 
 while True:
     results = get_temp()
+    tempf = int(1.8*results[0]+32)
     print(results)
 #    print("temp %s") % results[0]
-    pub_temp(results[0]) 
+    pub_temp(tempf) 
     time.sleep(5)
     
