@@ -34,7 +34,6 @@ while True:
     results = get_temp()
     tempf = int(1.8*results+32)
     print(results)
-#    print("temp %s") % results[0]
     pub_temp(tempf) 
     time.sleep(30)
     
