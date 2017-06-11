@@ -1,20 +1,20 @@
 import time
 import machine
 import onewire
+import ds18x20
+
 from umqtt.simple import MQTTClient
 ##### per client variables ####
 from metadata import client, topic, server
 
 def get_temp():
-    ds = onewire.DS18B20(onewire.Onewire(machine.Pin(1)))
+    ow = onewire.OneWire(machine.Pin(0))
+    ds = ds18x20.DS18X20(ow)
     roms = ds.scan()
-    print('found devices:', roms)
     ds.convert_temp()
     time.sleep_ms(750)
     for rom in roms:
-        print(ds.read_temp(rom), end=' ')
-    print()
-    return results
+        return ds.read_temp(rom)
     
 def pub_temp(temp):
     c = MQTTClient(client, server)
@@ -36,5 +36,5 @@ while True:
     print(results)
 #    print("temp %s") % results[0]
     pub_temp(tempf) 
-    time.sleep(5)
+    time.sleep(30)
     
