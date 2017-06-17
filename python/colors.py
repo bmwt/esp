@@ -14,37 +14,15 @@ def initalize_pins():
     for i in PINS:
         pin = machine.Pin(i, machine.Pin.OUT)
 
-def color_set(color):
-    if color == "white":
-        red = machine.PWM(machine.Pin(13), duty=1000)
-        green = machine.PWM(machine.Pin(14), duty=1000)
-        blue = machine.PWM(machine.Pin(12), duty=1000)
-
-    if color == "red":
-        red = machine.PWM(machine.Pin(13), freq=300, duty=100)
-        green = machine.PWM(machine.Pin(14), freq=300, duty=0)
-        blue = machine.PWM(machine.Pin(12), freq=300, duty=0)
-
-    if color == "green":
-        red = machine.PWM(machine.Pin(13), freq=300, duty=0)
-        green = machine.PWM(machine.Pin(14), freq=300, duty=100)
-        blue = machine.PWM(machine.Pin(12), freq=300, duty=100)
-    if color == "blue":
-        red = machine.PWM(machine.Pin(13), freq=300, duty=0)
-        green = machine.PWM(machine.Pin(14), freq=300, duty=0)
-        blue = machine.PWM(machine.Pin(12), freq=300, duty=100)
-
-    if color == "purple":
-        red = machine.PWM(machine.Pin(13), freq=300, duty=100)
-        green = machine.PWM(machine.Pin(14), freq=300, duty=0)
-        blue = machine.PWM(machine.Pin(12), freq=300, duty=100)
-
-    if color == "yellow":
-        red = machine.PWM(machine.Pin(13), freq=300, duty=900)
-        green = machine.PWM(machine.Pin(14), freq=300, duty=300)
-        blue = machine.PWM(machine.Pin(12), freq=300, duty=0)
-
-                            
+def duty_translate(n):
+    # translate values from 0-255 to 0-1023
+    return int((float(n) / 255) * 1023)
+    
+def setPixelColor(n, red, green, blue):
+    red = machine.PWM(machine.Pin(13), freq=300, duty=duty_translate(red))
+    green = machine.PWM(machine.Pin(14), freq=300, duty=duty_translate(green))
+    blue = machine.PWM(machine.Pin(12), freq=300, duty=duty_translate(blue))
+    
 def color_pulse(speed, step):
         for dutyCycle in range(1, 101, step):
             if red.duty is not 0:
@@ -63,11 +41,39 @@ def color_pulse(speed, step):
                 blue.duty(dutyCycle)
             time.sleep(speed)
 
-initalize_pins()
-color_set("white")
-#while True:
-#    color_pulse(0.02, 5)
-
-#while True:
-#    color_pulse("purple", 300, 0.02, 5) 
+def color_cycle(sleep):
+    setPixelColor(0, 0, 0, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 255, 255, 255)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 255, 0, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 255, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 0, 255)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 255, 255, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 255, 255)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 255, 0, 255)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 192, 192, 192)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 128, 128, 128)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 128, 128, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 128, 0)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 128, 0, 128)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 128, 128)
+    time.sleep_ms(sleep)
+    setPixelColor(0, 0, 0, 128)
+    time.sleep_ms(sleep)
     
+initalize_pins()
+while True:
+    color_cycle(500)
+ 
