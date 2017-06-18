@@ -12,7 +12,7 @@ html = """<!DOCTYPE html>
 <html>
 <head> <title>bmwt color server</title> </head>
 
-<center><h2>A simple webserver for changing a light's color with Micropython</h2></center>
+<center><h2>Go ahead- pick a color</h2></center>
 <center><h3>(All Hail Brak)</h3></center>
 
 <a href="/red">Red</a><p>
