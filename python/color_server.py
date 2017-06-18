@@ -10,6 +10,7 @@ bluePWM = machine.PWM(machine.Pin(12, machine.Pin.OUT), freq=1000)
 #HTML to send to browsers
 html = """<!DOCTYPE html>
 <html>
+<body bgcolor="#003333" text="white" link="#66ccaa" vlink="#339977" alink="#ff0099">
 <head> <title>bmwt color server</title> </head>
 
 <center><h2>Go ahead- pick a color</h2></center>
