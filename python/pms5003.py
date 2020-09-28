@@ -28,21 +28,6 @@
 __updated__ = "2020-07-04"
 __version__ = "1.9.12"
 
-
-### begin bmwt reminder ##
-# modified 
-#
-#import pms5003
-#import machine
-#import uasyncio as asyncio
-#uart = machine.UART(1, tx=21, rx=22, baudrate=9600)
-#pm = pms5003.PMS5003(uart)
-#pm.registerCallback(pm.print)
-#loop=asyncio.get_event_loop()
-#loop.run_forever()
-### end bmwt reminder
-
-
 import uasyncio as asyncio
 import time
 
